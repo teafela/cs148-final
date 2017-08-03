@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+b5df728a9c8d2afa75ac0f1a320b5ced hws/final/CMakeFiles/final_copy_resources

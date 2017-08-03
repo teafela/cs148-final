@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc ../../lib/libhw2.a  CMakeFiles/hw2_lib.dir/main.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib ../../lib/libhw2.a
