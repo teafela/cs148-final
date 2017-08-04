@@ -47,9 +47,15 @@ public:
 
     glm::vec3 m_pos;
     glm::vec4 m_color;
+
+    //basic kinematics
+    glm::vec3 vel;
+    glm::vec3 acc;
     
     EntityType m_type;
 
     Shader * m_shader;
+
+
     
 };

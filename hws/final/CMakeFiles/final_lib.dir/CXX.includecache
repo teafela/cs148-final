@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/ronaldsardarian/Documents/git/cs148-final/hws/final/BreathingCube.h
-Camera.h
-/Users/ronaldsardarian/Documents/git/cs148-final/hws/final/Camera.h
-
 /Users/ronaldsardarian/Documents/git/cs148-final/hws/final/Camera.h
 vector
 -
@@ -21,6 +17,10 @@ glm/glm.hpp
 -
 glm/gtc/matrix_transform.hpp
 -
+
+/Users/ronaldsardarian/Documents/git/cs148-final/hws/final/Cube.h
+Camera.h
+/Users/ronaldsardarian/Documents/git/cs148-final/hws/final/Camera.h
 
 /Users/ronaldsardarian/Documents/git/cs148-final/hws/final/Entity.h
 glm/glm.hpp
@@ -39,8 +39,8 @@ Camera.h
 /Users/ronaldsardarian/Documents/git/cs148-final/hws/final/STLib.h
 Entity.h
 /Users/ronaldsardarian/Documents/git/cs148-final/hws/final/Entity.h
-BreathingCube.h
-/Users/ronaldsardarian/Documents/git/cs148-final/hws/final/BreathingCube.h
+Cube.h
+/Users/ronaldsardarian/Documents/git/cs148-final/hws/final/Cube.h
 Light.h
 /Users/ronaldsardarian/Documents/git/cs148-final/hws/final/Light.h
 World.h

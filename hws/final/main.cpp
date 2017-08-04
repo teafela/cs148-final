@@ -49,8 +49,6 @@ class World; // forward declaration
 World * g_world;
 
 //key control vars
-bool cubesAreScared = false;
-bool cubesAreBreathing = true;
 bool worldIs3D = false;
 bool highPreformanceCube = false;
 glm::vec3 cubeRotation = glm::vec3(0,0,0);
@@ -126,11 +124,19 @@ void makeCubes(glm::vec3 rotation = glm::vec3(0,0,0) ){
 	for(float x = -gridSize; x <= gridSize + .0001f; x+= 1.0){
 		for (float y = -gridSize ; y <= gridSize + 0.001f; y += 1.0){
 			for (float z = -gridSize; z <= gridSize + 0.001f; z += 1.0){
-				ScaredCube * c = new ScaredCube(g_world->m_shader, glm::vec3(x,y,z), glm::vec4(0.7f, 0.17f, 0.17f, 1.0f) , g_world->m_camera);
+				Cube * c = new Cube(g_world->m_shader, glm::vec3(x,y,z), glm::vec4(0.7f, 0.17f, 0.17f, 1.0f));
 				g_world->addEntity(c);
 			}
 		}
 	}
+}
+
+void throwObject(glm::vec3 initialPos, glm::vec3 velocity){
+	//spawn object
+	glm::vec4 color = glm::vec4(0.7f, 0.17f, 0.17f, 1.0f);
+	Cube * c = new Cube(g_world->m_shader, initialPos, color);
+	g_world->addEntity(c);
+
 }
 
 // Create the universe!
@@ -139,7 +145,7 @@ void setupWorld(GLFWwindow * window) {
 		delete g_world;
 	}
 
-	g_world = new World(window, cubesAreScared);
+	g_world = new World(window);
 	g_world->addEntity(new Light(g_world->m_shader, kLightPos, lightColor, moveLight, g_world->m_camera));
 
 	makeCubes(cubeRotation);
@@ -161,97 +167,12 @@ void handleInput()
 	if (keys[GLFW_KEY_D]) g_world->m_camera->ProcessKeyboard(RIGHT, deltaTime);
 
     //3d/2d cube grid
-	if(keys[GLFW_KEY_2]){
-		worldIs3D = false;
-		highPreformanceCube = false;
+	if(keys[GLFW_KEY_R]){
 		setupWorld(MyWindow);
 	}
-	if(keys[GLFW_KEY_3]){
-		worldIs3D = true;
-		highPreformanceCube = false;
-		setupWorld(MyWindow);
+	if(keys[GLFW_KEY_SPACE]){
+		//throw some stuff
 	}
-
-    //High Preformance MegaGrid
-	if(keys[GLFW_KEY_H]){
-		worldIs3D = true;
-		highPreformanceCube = !highPreformanceCube;
-		setupWorld(MyWindow);
-		keys[GLFW_KEY_H] = false;
-	}
-
-    //toggle breathing
-	if(keys[GLFW_KEY_1]){
-		if(cubesAreBreathing){
-			cubesAreBreathing = false;
-		}
-		else{
-			cubesAreBreathing = true;
-		}
-		setupWorld(MyWindow);
-		keys[GLFW_KEY_1] = false;
-	}
-
-    //Pausing
-	if(keys[GLFW_KEY_P]){
-		g_world->togglePause();
-        //consume the trigger
-		keys[GLFW_KEY_P] = false;
-	}
-
-    //light controls
-	if(keys[GLFW_KEY_B]){
-		if(lightColor[1] < 0.01){
-			lightColor = glm::vec4(1.0,1.0,1.0,1.0);
-		}
-		else{
-			lightColor = glm::vec4(0.0,0.0,1.0,1.0);
-		}
-		setupWorld(MyWindow);
-		keys[GLFW_KEY_B] = false;
-	}
-    //Light Movement Toggle
-	if(keys[GLFW_KEY_L]){
-		if(!moveLight){
-			moveLight = true;
-		}
-		else{
-			moveLight= false;
-		}
-
-		setupWorld(MyWindow);
-		keys[GLFW_KEY_L] = false;
-	}
-
-    //Rotations
-    //Rotation Y World
-	if(keys[GLFW_KEY_8]){
-		cubeRotation = glm::vec3(0,1,0);
-		worldRelativeRotation = true;
-		setupWorld(MyWindow);
-		keys[GLFW_KEY_8] = false;
-	}
-    //Rotation Y Cube Relative
-	if(keys[GLFW_KEY_9]){
-		cubeRotation = glm::vec3(0,1,0);
-		worldRelativeRotation = false;
-		setupWorld(MyWindow);
-		keys[GLFW_KEY_9] = false;
-	}
-
-    //Reset All Animations
-	if(keys[GLFW_KEY_0]){
-		cubeRotation = glm::vec3(0,0,0);
-		setupWorld(MyWindow);
-	}
-
-    //secret custom mode toggle
-	if(keys[GLFW_KEY_X]){
-		cubesAreScared = !cubesAreScared;
-		setupWorld(MyWindow);
-		keys[GLFW_KEY_X] = false;
-	}
-
 
 }
 

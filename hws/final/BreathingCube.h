@@ -123,7 +123,7 @@ class CubeResource
 // Class : BreathingCube
 //===========================================================
 
-class BreathingCube : public Entity
+class Cube : public Entity
 {
 
 public:
@@ -344,10 +344,6 @@ protected:
     glm::vec4 m_initial_color;
     glm::vec3 m_initial_pos;
     Camera* m_camera;
-
-    //basic kinematics
-    glm::vec3 vel;
-    glm::vec3 acc;
 
 };
 

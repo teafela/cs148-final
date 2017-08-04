@@ -25,7 +25,7 @@ class World
 
 public:
 
-    World(GLFWwindow * window, bool toon = false) {
+    World(GLFWwindow * window, bool toon = true) {
         m_window = window;
         if(toon){
             m_shader = new Shader("/Users/ronaldsardarian/Documents/git/cs148-student-repo/bin/toon.vs", "/Users/ronaldsardarian/Documents/git/cs148-student-repo/bin/toon.frag");
@@ -81,6 +81,7 @@ public:
         for(size_t i = 0; i < m_entities.size(); i++) {
             Entity * curr = m_entities.at(i);
             if(curr) curr->render();
+
         }
 
         // Swap the screen buffers using a double-buffer:
@@ -108,6 +109,8 @@ public:
             Entity * curr = m_entities.at(i);
             
             if(!curr) continue;
+
+            //gravity?
             
             handleCollisions(curr);
             //pausing
